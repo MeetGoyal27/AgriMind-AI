@@ -1,252 +1,174 @@
-<div align="center">
+# AgriMind AI
 
-# Krishi Sahayak
-
-### AI Agriculture Assistant for Indian Farmers
-
-[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![Flask](https://img.shields.io/badge/Flask-3.1-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
-[![Groq](https://img.shields.io/badge/Groq-LLM-F55036?style=flat-square&logo=fastapi&logoColor=white)](https://console.groq.com)
-[![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
-[![Deploy](https://img.shields.io/badge/Deploy-Render-41E065?style=flat-square&logo=render&logoColor=white)](https://llm-agri-bot.onrender.com)
-[![uv](https://img.shields.io/badge/uv-Package_Manager-DE5FE9?style=flat-square&logo=uv&logoColor=white)](https://docs.astral.sh/uv/)
-
-**Live Demo → [llm-agri-bot.onrender.com](https://llm-agri-bot.onrender.com)**
-
-An AI-powered agriculture chatbot that helps Indian farmers with crop advice, pest control, soil health, weather, and government schemes — using text, voice, and image analysis.
-
-<br/>
-
-![Krishi Sahayak — Web Interface](Sample_image/chat-interface.png)
-
-</div>
-
----
+AgriMind AI is an AI-powered agricultural assistant that helps users interact with an intelligent chatbot for agriculture-related queries. The application supports conversational interactions and integrates AI services for text, speech, and voice-based communication.
 
 ## Features
 
-| Feature | Description |
-|---------|-------------|
-| Text Chat | Ask any agriculture question and get expert answers |
-| Image Diagnosis | Upload a crop photo → AI identifies diseases, pests & deficiencies |
-| Voice Input | Speak in English, Hindi, or Hinglish via Groq Whisper |
-| Voice Output | Bot reads answers aloud using Groq Orpheus TTS |
-| Conversation Memory | Remembers your chat context (Redis, with in-memory fallback) |
-| Prompt Caching | 50% cost savings — cached prefixes across requests |
-| Dark/Light Theme | Glassmorphism UI with one-click theme toggle |
-| Multilingual | Responds in English, Hindi, or Hinglish |
-
-![Krishi Sahayak — Voice Chat on Mobile](Sample_image/chat-2.png)
-
----
+* AI-powered conversational chatbot
+* Context-aware conversations
+* Text-to-speech support
+* Speech-to-text support
+* Customizable prompts
+* Web-based user interface
+* LLM integration
+* Conversation memory
+* Flask-based backend
+* Easy local deployment
 
 ## Tech Stack
 
-<table>
-<tr>
-<td><strong>Backend</strong></td>
-<td>Python 3.11+, Flask, Groq SDK</td>
-</tr>
-<tr>
-<td><strong>Frontend</strong></td>
-<td>HTML5, CSS3 (Glassmorphism), jQuery</td>
-</tr>
-<tr>
-<td><strong>LLM</strong></td>
-<td><code>openai/gpt-oss-120b</code> (text), <code>meta-llama/llama-4-scout-17b-16e-instruct</code> (vision)</td>
-</tr>
-<tr>
-<td><strong>Speech</strong></td>
-<td>Groq Whisper <code>whisper-large-v3-turbo</code> (STT), Groq Orpheus <code>canopylabs/orpheus-v1-english</code> (TTS)</td>
-</tr>
-<tr>
-<td><strong>Memory</strong></td>
-<td>Redis (with automatic in-memory fallback)</td>
-</tr>
-<tr>
-<td><strong>Deploy</strong></td>
-<td>Render, Docker, Gunicorn</td>
-</tr>
-</table>
-
----
-
-## Quick Start
-
-### Prerequisites
-
-- **Python 3.11+**
-- **[uv](https://docs.astral.sh/uv/getting-started/installation/)** package manager
-- **[Groq API key](https://console.groq.com/keys)** (free tier available)
-
-### 1. Clone & Install
-
-```bash
-git clone https://github.com/mohammed97ashraf/LLM_Agri_Bot.git
-cd LLM_Agri_Bot
-uv sync
-```
-
-### 2. Configure
-
-```bash
-cp .env.example LLM_Agri_Bot/.env
-```
-
-Edit `LLM_Agri_Bot/.env` and add your Groq API key:
-
-```env
-GROQ_API_KEY=gsk_your_key_here
-```
-
-### 3. Run
-
-```bash
-uv run python LLM_Agri_Bot/run.py
-```
-
-Open **[http://127.0.0.1:5000](http://127.0.0.1:5000)**
-
----
-
-## Environment Variables
-
-Copy `.env.example` to `LLM_Agri_Bot/.env` and configure:
-
-| Variable | Required | Default | Description |
-|----------|:--------:|---------|-------------|
-| `GROQ_API_KEY` | Yes | — | Your Groq API key ([get one](https://console.groq.com/keys)) |
-| `LLM_MODEL` | No | `openai/gpt-oss-120b` | Text LLM model |
-| `LLM_VISION_MODEL` | No | `meta-llama/llama-4-scout-17b-16e-instruct` | Vision LLM model |
-| `LLM_TEMPERATURE` | No | `0.3` | Model temperature (0–2) |
-| `LLM_MAX_TOKENS` | No | `2048` | Max response tokens |
-| `STT_MODEL` | No | `whisper-large-v3-turbo` | Speech-to-text model |
-| `TTS_MODEL` | No | `canopylabs/orpheus-v1-english` | Text-to-speech model |
-| `TTS_VOICE` | No | `autumn` | TTS voice name |
-| `REDIS_HOST` | No | `localhost` | Redis host (optional — falls back to memory) |
-| `REDIS_PORT` | No | `6379` | Redis port |
-| `REDIS_SSL` | No | `false` | Enable Redis SSL |
-| `FLASK_SECRET_KEY` | Yes* | `dev-secret-key` | Flask session secret (*required in production) |
-| `FLASK_DEBUG` | No | `true` | Enable debug mode |
-
----
+* **Backend:** Python, Flask
+* **AI/LLM:** Groq / LLM APIs
+* **Frontend:** HTML, CSS, JavaScript
+* **Speech:** Speech-to-Text and Text-to-Speech services
+* **Configuration:** Environment variables
+* **Deployment:** Gunicorn, Render
 
 ## Project Structure
 
-```
-LLM_Agri_Bot/
+```text
+AgriMind-AI/
+│
 ├── app/
-│   ├── __init__.py             # App factory (create_app)
-│   ├── config.py               # Environment-based configuration
 │   ├── routes/
-│   │   ├── main.py             # Index page, robots.txt, sitemap, llms.txt
-│   │   └── chat.py             # Chat API (text, voice, image)
+│   │   ├── chat.py
+│   │   └── main.py
+│   │
 │   ├── services/
-│   │   ├── llm_service.py      # Groq LLM + vision + prompt caching
-│   │   ├── memory_service.py   # Redis + in-memory fallback
-│   │   ├── stt_service.py      # Groq Whisper STT
-│   │   ├── tts_service.py      # Groq Orpheus TTS
-│   │   └── prompt_manager.py   # XML + CoT system prompt
+│   │   ├── llm_service.py
+│   │   ├── memory_service.py
+│   │   ├── prompt_manager.py
+│   │   ├── stt_service.py
+│   │   └── tts_service.py
+│   │
 │   ├── static/
-│   │   ├── css/style.css       # Glassmorphism UI (dark/light)
-│   │   ├── js/chat.js          # Chat logic, image upload, voice
-│   │   └── images/             # Favicon
-│   └── templates/
-│       └── index.html          # Main template (SEO + JSON-LD)
-├── Sample_image/               # Screenshots for README
-├── llms.txt                    # AI crawler disclosure
-├── .env.example                # Environment template
-├── gunicorn.conf.py            # Production Gunicorn config
-├── Dockerfile                  # Docker deployment
-├── render.yaml                 # Render blueprint
-├── run.py                      # Dev entry point
-├── pyproject.toml              # uv / project config
-└── requirements.txt            # pip fallback
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── images/
+│   │
+│   ├── templates/
+│   │   └── index.html
+│   │
+│   └── config.py
+│
+├── Sample_image/
+├── .env.example
+├── .gitignore
+├── Dockerfile
+├── gunicorn.conf.py
+├── pyproject.toml
+├── render.yaml
+├── requirements.txt
+└── run.py
 ```
 
----
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/MeetGoyal27/AgriMind-AI.git
+cd AgriMind-AI
+```
+
+### 2. Create a virtual environment
+
+Using Python:
+
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Environment Variables
+
+Create a `.env` file in the root directory.
+
+Use `.env.example` as a reference:
+
+```text
+GROQ_API_KEY=your_api_key_here
+LLM_MODEL=your_model_name
+LLM_VISION_MODEL=your_vision_model
+STT_MODEL=your_stt_model
+TTS_MODEL=your_tts_model
+```
+
+**Never commit your `.env` file or API keys to GitHub.**
+
+## Running the Application
+
+Start the application with:
+
+```bash
+python run.py
+```
+
+The application will be available locally at:
+
+```text
+http://localhost:5000
+```
+
+## Application Workflow
+
+```text
+User
+  ↓
+Web Interface
+  ↓
+Flask Backend
+  ↓
+Chat Route
+  ↓
+Prompt + Conversation Memory
+  ↓
+LLM Service
+  ↓
+AI Response
+  ↓
+Web Interface
+```
+
+For voice interactions:
+
+```text
+User Voice
+    ↓
+Speech-to-Text
+    ↓
+LLM
+    ↓
+Text Response
+    ↓
+Text-to-Speech
+    ↓
+Audio Response
+```
+
+## Configuration
+
+Application configuration is managed through environment variables and the configuration module.
+
+Important configuration values should be stored in `.env` rather than directly inside the source code.
 
 ## Deployment
 
-### Render (Recommended)
+The project includes configuration files for deployment using Gunicorn and Render.
 
-1. Push your code to GitHub
-2. Go to [render.com](https://render.com) → **New** → **Web Service**
-3. Connect your GitHub repo
-4. Render auto-detects `render.yaml` and `Dockerfile`
-5. Add your `GROQ_API_KEY` (and other env vars) in the Render dashboard
-6. Click **Deploy**
-
-### Docker
-
-```bash
-docker build -t krishi-sahayak .
-docker run -p 10000:10000 --env-file LLM_Agri_Bot/.env krishi-sahayak
-```
-
----
-
-## API Reference
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/` | Chat interface |
-| `POST` | `/chat` | Send text, image, or audio — returns AI response |
-| `POST` | `/chat/clear` | Clear conversation history |
-| `GET` | `/health` | Health check (Redis status) |
-| `GET` | `/robots.txt` | Search engine crawl rules |
-| `GET` | `/sitemap.xml` | XML sitemap |
-| `GET` | `/llms.txt` | AI crawler disclosure |
-| `GET` | `/.well-known/llms.txt` | AI crawler disclosure (well-known path) |
-
----
-
-## How It Works
-
-```
-User sends message (text / image / voice)
-        │
-        ▼
-┌─────────────────────────────────────────┐
-│  Flask Backend                          │
-│  ├── Text? → Groq LLM (gpt-oss-120b)  │
-│  ├── Image? → Llama 4 Scout (vision)   │
-│  └── Voice? → Whisper STT → LLM → TTS  │
-│                                         │
-│  Memory: Redis (or in-memory fallback)  │
-│  Cache:  Groq automatic prompt caching  │
-└─────────────────────────────────────────┘
-        │
-        ▼
-Response with text + optional voice audio
-```
-
----
-
-## Contributing
-
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-```bash
-git checkout -b feature/your-feature
-uv sync
-# make changes
-git commit -m "Add your feature"
-git push origin feature/your-feature
-```
-
----
+For production deployment, configure the required environment variables in the deployment platform rather than committing them to the repository.
 
 ## License
 
-MIT License — see [LICENSE](LICENSE)
-
----
-
-<div align="center">
-
-**Built with care for Indian farmers**
-
-By [Mohammed Ashraf](https://www.linkedin.com/in/mohammed97ashraf) · [GitHub](https://github.com/mohammed97ashraf) · [LinkedIn](https://www.linkedin.com/in/mohammed97ashraf)
-
-</div>
+This project is licensed under the MIT License.
