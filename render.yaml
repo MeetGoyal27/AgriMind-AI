@@ -3,4 +3,4 @@ services:
     name: agrimind-ai
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn "app:create_app()" --config gunicorn.conf.py --factory
+    startCommand: gunicorn "app:create_app()" --config gunicorn.conf.py
