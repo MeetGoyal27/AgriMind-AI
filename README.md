@@ -1,174 +1,77 @@
-# AgriMind AI
+# 🌱 AgriMind AI
 
-AgriMind AI is an AI-powered agricultural assistant that helps users interact with an intelligent chatbot for agriculture-related queries. The application supports conversational interactions and integrates AI services for text, speech, and voice-based communication.
+> An AI-powered agricultural assistant that provides conversational, context-aware support through text and voice interaction.
 
-## Features
+## 📌 Overview
 
-* AI-powered conversational chatbot
-* Context-aware conversations
-* Text-to-speech support
-* Speech-to-text support
-* Customizable prompts
-* Web-based user interface
-* LLM integration
-* Conversation memory
-* Flask-based backend
-* Easy local deployment
+AgriMind AI is a web-based AI assistant designed to make agricultural information more accessible through natural language conversations.
 
-## Tech Stack
+The application combines a Flask backend with an LLM-powered response system and supporting services for conversation memory, speech-to-text, and text-to-speech.
 
-* **Backend:** Python, Flask
-* **AI/LLM:** Groq / LLM APIs
-* **Frontend:** HTML, CSS, JavaScript
-* **Speech:** Speech-to-Text and Text-to-Speech services
-* **Configuration:** Environment variables
-* **Deployment:** Gunicorn, Render
+The project follows a modular architecture where different responsibilities are separated into dedicated services. This makes the application easier to maintain, extend, and deploy.
 
-## Project Structure
+## ✨ Features
 
-```text
-AgriMind-AI/
-│
-├── app/
-│   ├── routes/
-│   │   ├── chat.py
-│   │   └── main.py
-│   │
-│   ├── services/
-│   │   ├── llm_service.py
-│   │   ├── memory_service.py
-│   │   ├── prompt_manager.py
-│   │   ├── stt_service.py
-│   │   └── tts_service.py
-│   │
-│   ├── static/
-│   │   ├── css/
-│   │   ├── js/
-│   │   └── images/
-│   │
-│   ├── templates/
-│   │   └── index.html
-│   │
-│   └── config.py
-│
-├── Sample_image/
-├── .env.example
-├── .gitignore
-├── Dockerfile
-├── gunicorn.conf.py
-├── pyproject.toml
-├── render.yaml
-├── requirements.txt
-└── run.py
-```
+- 💬 **AI-Powered Chat**
+  - Ask agriculture-related questions using natural language.
+  - Receive AI-generated responses through a conversational interface.
 
-## Installation
+- 🧠 **Conversation Memory**
+  - Maintains context across conversations.
+  - Uses Redis when available.
+  - Falls back to in-memory storage when Redis is unavailable.
 
-### 1. Clone the repository
+- 🎙️ **Speech-to-Text**
+  - Supports voice input.
+  - Uses Groq Whisper for speech recognition.
 
-```bash
-git clone https://github.com/MeetGoyal27/AgriMind-AI.git
-cd AgriMind-AI
-```
+- 🔊 **Text-to-Speech**
+  - Converts AI-generated responses into speech.
+  - Provides a voice-based interaction experience.
 
-### 2. Create a virtual environment
+- 🌾 **Agriculture-Focused Assistance**
+  - Designed for agriculture-related questions and discussions.
 
-Using Python:
+- 🌐 **Web Interface**
+  - Interactive browser-based chat interface.
+  - Supports both text and voice interaction.
 
-```bash
-python -m venv .venv
-```
+- 🚀 **Production Deployment**
+  - Deployed using Render.
+  - Flask application served through Gunicorn.
+  - Automatically deployed from GitHub.
 
-Activate it on Windows:
+---
 
-```bash
-.venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-## Environment Variables
-
-Create a `.env` file in the root directory.
-
-Use `.env.example` as a reference:
+## 🏗️ System Architecture
 
 ```text
-GROQ_API_KEY=your_api_key_here
-LLM_MODEL=your_model_name
-LLM_VISION_MODEL=your_vision_model
-STT_MODEL=your_stt_model
-TTS_MODEL=your_tts_model
-```
-
-**Never commit your `.env` file or API keys to GitHub.**
-
-## Running the Application
-
-Start the application with:
-
-```bash
-python run.py
-```
-
-The application will be available locally at:
-
-```text
-http://localhost:5000
-```
-
-## Application Workflow
-
-```text
-User
-  ↓
-Web Interface
-  ↓
-Flask Backend
-  ↓
-Chat Route
-  ↓
-Prompt + Conversation Memory
-  ↓
-LLM Service
-  ↓
-AI Response
-  ↓
-Web Interface
-```
-
-For voice interactions:
-
-```text
-User Voice
-    ↓
-Speech-to-Text
-    ↓
-LLM
-    ↓
-Text Response
-    ↓
-Text-to-Speech
-    ↓
-Audio Response
-```
-
-## Configuration
-
-Application configuration is managed through environment variables and the configuration module.
-
-Important configuration values should be stored in `.env` rather than directly inside the source code.
-
-## Deployment
-
-The project includes configuration files for deployment using Gunicorn and Render.
-
-For production deployment, configure the required environment variables in the deployment platform rather than committing them to the repository.
-
-## License
-
-This project is licensed under the MIT License.
+                    ┌──────────────────────┐
+                    │      Web Client      │
+                    │    HTML / CSS / JS    │
+                    └───────────┬──────────┘
+                                │
+                                ▼
+                    ┌──────────────────────┐
+                    │    Flask Backend     │
+                    │       Routes         │
+                    └───────────┬──────────┘
+                                │
+              ┌─────────────────┼─────────────────┐
+              │                 │                 │
+              ▼                 ▼                 ▼
+      ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+      │ LLM Service  │  │Memory Service│  │Voice Services│
+      └──────┬───────┘  └──────┬───────┘  └──────┬───────┘
+             │                  │                 │
+             ▼                  ▼                 ▼
+      ┌──────────────┐   ┌─────────────┐   ┌──────────────┐
+      │ LLM Provider │   │Redis /      │   │Whisper / TTS │
+      │              │   │Memory       │   │              │
+      └──────────────┘   └─────────────┘   └──────────────┘
+             │                  │                 │
+             └──────────────────┼─────────────────┘
+                                ▼
+                    ┌──────────────────────┐
+                    │     AI Response      │
+                    └──────────────────────┘
